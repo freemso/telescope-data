@@ -1,5 +1,78 @@
 # Telescope 数据源
 
+## 豆瓣
+
+### 获取一个用户的动态
+
+`GET douban/user/life?uid={}`
+
+`uid` 可以是字符串也可以是数字 id
+
+Response:
+```json
+{
+    "ok": true,
+    "result": [
+        {
+            "time": "2019-07-30 18:30:21",
+            "activity_type": "status",
+            "activity": "发广播",
+            "text": "只有文字",
+            "images": []
+        },
+        {
+            "time": "2019-07-30 18:12:19",
+            "activity_type": "status",
+            "activity": "发广播",
+            "text": "",
+            "images": [
+                "https://img3.doubanio.com/view/status/m/public/68183360-496fc5e6b4b2d24.jpg"
+            ]
+        },
+        {
+            "time": "2019-07-30 17:36:24",
+            "activity_type": "mark",
+            "activity": "想看",
+            "url": "https://movie.douban.com/subject/27119156/",
+            "title": "怪奇物语 第三季",
+            "rating": "8.9分",
+            "pic": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2558683543.jpg",
+            "type": "tv"
+        },
+        {
+            "time": "2019-07-30 17:22:32",
+            "activity_type": "status",
+            "activity": "发广播",
+            "text": "果果",
+            "images": [
+                "https://img1.doubanio.com/view/status/s/public/68180447-cfa7ccde7cd6dfb.jpg",
+                "https://img1.doubanio.com/view/status/s/public/68180446-37c76463ec6edeb.jpg"
+            ]
+        },
+        {
+            "time": "2019-07-30 17:09:35",
+            "activity_type": "mark",
+            "activity": "想读",
+            "url": "https://book.douban.com/subject/33379779/",
+            "title": "美国陷阱",
+            "rating": "8.3分",
+            "pic": "https://img3.doubanio.com/view/subject/l/public/s32305312.jpg",
+            "type": "book"
+        },
+        {
+            "time": "2019-07-30 16:53:43",
+            "activity_type": "mark",
+            "activity": "听过",
+            "url": "https://music.douban.com/subject/26668273/",
+            "title": "Blackstar",
+            "rating": "9.0分",
+            "pic": "https://img3.doubanio.com/view/subject/s/public/s28344624.jpg",
+            "type": "music"
+        }
+    ]
+}
+```
+
 ## 微博
 
 ### 获取一个用户基本信息

@@ -108,11 +108,15 @@ class WeiboAPI:
                 pics.append(pic)
             blog["pic_num"] = raw_blog["pic_num"]
             blog["pics"] = pics
+        if 'retweeted_status' in raw_blog:
+            blog['retweeted_status'] = WeiboAPI.parse_raw_blog(raw_blog['retweeted_status'])
         return blog
 
     @staticmethod
     def parse_user_info(user_info_raw):
         """把raw的一个用户信息转化为需要的格式"""
+        if user_info_raw is None:
+            return {}
         return {
             "uid": user_info_raw.get("id", None),
             "screen_name": user_info_raw.get("screen_name", ""),
@@ -169,7 +173,7 @@ class WeiboAPI:
             'value': uid
         }
         followed_id_list = []
-        for page_id in range(1, 5):
+        for page_id in range(1, 2):
             params['page'] = page_id
             r = requests.get(cls.BASE_URL, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)
@@ -202,7 +206,7 @@ class WeiboAPI:
         }
 
         blogs = []
-        for page_id in range(1, 5):
+        for page_id in range(1, 2):
             params['page'] = page_id
             r = requests.get(cls.BASE_URL, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)
@@ -234,7 +238,7 @@ class WeiboAPI:
         }
 
         blogs = []
-        for page_id in range(1, 5):
+        for page_id in range(1, 2):
             params['page'] = page_id
             r = requests.get(cls.BASE_URL, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)
@@ -306,7 +310,7 @@ class WeiboAPI:
         url = 'https://m.weibo.cn/comments/hotflow'
 
         comments = []
-        for _ in range(1, 5):
+        for _ in range(1, 2):
             r = requests.get(url, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)
             raw_result = r.json()
@@ -339,7 +343,7 @@ class WeiboAPI:
         url = 'https://m.weibo.cn/api/attitudes/show'
 
         likes = []
-        for page_id in range(1, 5):
+        for page_id in range(1, 2):
             params['page'] = page_id
             r = requests.get(url, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)
@@ -370,7 +374,7 @@ class WeiboAPI:
         url = 'https://m.weibo.cn/api/statuses/repostTimeline'
 
         reposts = []
-        for page_id in range(1, 5):
+        for page_id in range(1, 2):
             params['page'] = page_id
             r = requests.get(url, params=params, cookies=cookies, timeout=3)
             Cookies.update_cookies(cookies_id, cls.cookies_type, r, db)

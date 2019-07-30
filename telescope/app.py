@@ -71,7 +71,7 @@ def weibo_user_info():
             result = WeiboAPI.get_user_info(uid, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -85,7 +85,7 @@ def weibo_user_following():
             result = WeiboAPI.get_user_following(uid)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -100,7 +100,7 @@ def weibo_user_blogs():
             result = WeiboAPI.get_user_blogs(uid, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -115,7 +115,7 @@ def weibo_user_likes():
             result = WeiboAPI.get_user_likes(uid, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -130,7 +130,7 @@ def weibo_blog_detail():
             result = WeiboAPI.get_blog_detail(weibo_id, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -145,7 +145,7 @@ def weibo_blog_comments():
             result = WeiboAPI.get_blog_comments(weibo_id, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -160,7 +160,7 @@ def weibo_blog_likes():
             result = WeiboAPI.get_blog_likes(weibo_id, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -175,7 +175,7 @@ def weibo_blog_reposts():
             result = WeiboAPI.get_blog_reposts(weibo_id, raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -184,13 +184,12 @@ def weibo_blog_reposts():
 def douban_user_info():
     data = request.values
     uid = data['uid']
-    raw = data.get("raw", False)
     if uid:
         try:
             result = DoubanAPI.get_user_info(uid)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP
 
 
@@ -205,5 +204,5 @@ def douban_user_life():
             result = DoubanAPI.get_life_stream(uid, raw=raw)
             return _ok_resp(result)
         except RequestException as e:
-            return _error_resp(e)
+            return _error_resp(e.args[0])
     return PARAMS_ERROR_RESP

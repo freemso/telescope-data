@@ -83,7 +83,7 @@ class WeiboAPI:
         result_text = re.sub(re.compile(r'\[.{1,5}\]'), ' ', result_text)  # 将其余可能无法转换的表情删掉
         result_text = re.sub(re.compile(r"\s*\.?\s*\u200b*$"), "", result_text)  # 去掉文本末尾的点
         result_text = re.sub(re.compile(r"全文$"), "...", result_text)  # 将尾部全文替换为...
-        return [result_text.strip()]
+        return result_text.strip()
 
     @staticmethod
     def parse_raw_blog(raw_blog):

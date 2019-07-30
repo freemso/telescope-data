@@ -7,6 +7,13 @@ class DoubanAPI:
     logger = logging.getLogger(__name__)
 
     @classmethod
+    def get_user_info(cls, uid):
+        """获得用户基本信息"""
+        url = "https://api.douban.com/v2/user/{}".format(uid)
+        r = requests.get(url, timeout=10)
+        return r.json()
+
+    @classmethod
     def get_life_stream(cls, uid, count=100, raw=False):
         """动态"""
         params = {

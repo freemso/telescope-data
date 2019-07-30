@@ -2,9 +2,38 @@
 
 ## 豆瓣
 
+### 获取一个用户的基本信息
+
+`GET /douban/user/info?uid={}`
+
+`uid` 可以是字符串也可以是数字 id
+
+Response:
+```json
+{
+    "ok": true,
+    "result": {
+        "loc_id": "131441",
+        "name": "🦜M.Whatsthat!",
+        "created": "2015-02-21 00:28:17",
+        "is_banned": false,
+        "is_suicide": false,
+        "loc_name": "Reykjavík, Iceland",
+        "avatar": "https://img1.doubanio.com/icon/u121767345-19.jpg",
+        "signature": "",
+        "uid": "freemso",
+        "alt": "https://www.douban.com/people/freemso/",
+        "desc": "No.",
+        "type": "user",
+        "id": "121767345",
+        "large_avatar": "https://img1.doubanio.com/icon/up121767345-19.jpg"
+    }
+}
+```
+
 ### 获取一个用户的动态
 
-`GET douban/user/life?uid={}`
+`GET /douban/user/life?uid={}`
 
 `uid` 可以是字符串也可以是数字 id
 

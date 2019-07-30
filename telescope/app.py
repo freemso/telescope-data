@@ -179,6 +179,21 @@ def weibo_blog_reposts():
     return PARAMS_ERROR_RESP
 
 
+@app.route('/douban/user/info', methods=['GET'])
+@api_wrapper
+def douban_user_info():
+    data = request.values
+    uid = data['uid']
+    raw = data.get("raw", False)
+    if uid:
+        try:
+            result = DoubanAPI.get_user_info(uid)
+            return _ok_resp(result)
+        except RequestException as e:
+            return _error_resp(e)
+    return PARAMS_ERROR_RESP
+
+
 @app.route('/douban/user/life', methods=['GET'])
 @api_wrapper
 def douban_user_life():

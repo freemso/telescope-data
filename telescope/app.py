@@ -8,6 +8,7 @@ from flask_cors import CORS
 from requests import RequestException
 
 from api.bilibili import Bilibili
+from api.douban import DoubanAPI
 from api.historycrawler import HistoryCrawler
 from api.weibo import WeiboAPI
 from api.xiaohongshu import XiaoHongShuApi
@@ -176,6 +177,21 @@ def weibo_blog_reposts():
     if weibo_id:
         try:
             result = WeiboAPI.get_blog_reposts(weibo_id, raw)
+            return _ok_resp(result)
+        except RequestException as e:
+            return _error_resp(e)
+    return PARAMS_ERROR_RESP
+
+
+@app.route('/douban/user/life', methods=['GET'])
+@api_wrapper
+def douban_user_life():
+    data = request.values
+    uid = data['uid']
+    raw = data.get("raw", False)
+    if uid:
+        try:
+            result = DoubanAPI.get_life_stream(uid, raw=raw)
             return _ok_resp(result)
         except RequestException as e:
             return _error_resp(e)

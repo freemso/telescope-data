@@ -10,7 +10,7 @@ gunicorn==19.7.1
 idna==2.6
 itsdangerous==1.1.0
 Jinja2==2.10
-lxml==4.1.1
+lxml==4.6.2
 MarkupSafe==1.1.0
 newrelic==4.6.0.106
 PyExecJS==1.5.1
